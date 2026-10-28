@@ -1,6 +1,31 @@
 ---
-title: "Analysis 1"
+title: "A Beautiful Graphic"
 author: "mariana comartin"
+execute:
+  echo: false
 ---
 
-Mariana Comartin is a data maestro!
+```{r}
+#| message: false
+library(tidyverse)
+```
+
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
+  geom_point(size = 2.6, alpha = 0.82) +
+  geom_smooth(method = "lm", se = FALSE, color = "black", linewidth = 0.7) +
+  labs(
+    title = "Fuel economy falls as engines grow larger",
+    subtitle = "Vehicles in the built-in mpg dataset",
+    x = "Engine displacement (litres)",
+    y = "Highway fuel economy (mpg)",
+    color = "Vehicle class",
+    caption = "Source: ggplot2::mpg"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank(),
+    legend.position = "bottom"
+  )
+```
